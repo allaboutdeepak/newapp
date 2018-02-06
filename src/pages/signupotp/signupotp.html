@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Verify your phone number</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  App will send an SMS to veryfy your phone number.
+  Enter your country code and phone number
+
+  <div id="recaptcha-container"></div>
+<ion-list>
+  <ion-item>
+   </ion-item>
+   <ion-item>
+     <ion-input item-end  name="phoneNumber" type="number" [(ngModel)]="phoneNumber" placeholder="phone number"> </ion-input>
+  </ion-item>
+  <ion-item class="pl-0 btn-sm">
+      <button  class="btn submit-btn fs-16" ion-button id="sign-in-button" (click)="signIn(phoneNumber)">
+          Sign In
+        </button>
+     </ion-item>
+
+  <p class="text-center">Carrier SMS charges may apply</p>
+  </ion-list>
+</ion-content>

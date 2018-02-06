@@ -1,0 +1,47 @@
+<div class="container p-15 mt-35">
+    <form #addForm="ngForm" novalidate class="form-signin">
+   
+    <ion-row class="text-center">
+    <h2 class="text-center"> Add items</h2>
+    </ion-row>
+    <ion-row class="">
+        <ion-col class="p-0">
+          <ion-list>
+           <ion-item class="pl-0">
+                 <ion-input [(ngModel)]="item.item" name="item" type="text" placeholder="item"  #item="ngModel" spellcheck="false" autocapitalize="off" class="form-control"  required>
+           </ion-input>
+           </ion-item>
+           <p  class="mtm-6 pl-12" ion-text [hidden]="item.valid || submitted == false" color="danger" padding-left>
+             item is required
+           </p>
+         <ion-item class="pl-0">
+               <ion-input [(ngModel)]="item.amount" name="amount" type="text" placeholder="amount"  #amount="ngModel" spellcheck="false" autocapitalize="off" class="form-control"  required>
+         </ion-input>
+         </ion-item>
+         <p  class="mtm-6 pl-12" ion-text [hidden]="item.valid || submitted == false" color="danger" padding-left>
+           amount is required
+         </p>
+        <ion-item class="pl-0">
+         <ion-input [(ngModel)]="item.date" name="date" type="text" placeholder="date"  #date="ngModel" spellcheck="false" autocapitalize="off" class="form-control"  required>
+         </ion-input>
+       </ion-item>
+       <p  class="mtm-6 pl-12" ion-text [hidden]="item.valid || submitted == false" color="danger" padding-left>
+         date is required
+       </p>   
+       <ion-item class="pl-0">
+             <ion-input [(ngModel)]="item.message" name="message" type="text" placeholder="message"  #date="ngModel" spellcheck="false" autocapitalize="off" class="form-control"  required>
+             </ion-input>
+       </ion-item>
+         <p  class="mtm-6 pl-12" ion-text [hidden]="item.valid || submitted == false" color="danger" padding-left>
+           message is required
+         </p>
+       <ion-item class="pl-0 btn-sm">
+            <button ion-button class="btn submit-btn fs-16" full type="submit" (click)="onLogin(addForm)">Save</button>
+        </ion-item>
+          </ion-list>
+        </ion-col>
+    
+      </ion-row>
+      
+    </form>
+  </div>

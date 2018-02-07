@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
-import { ModalController,Events, Content, TextInput } from 'ionic-angular';
+import { Events, Content, TextInput } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat-service";
 @IonicPage()
 @Component({
@@ -16,11 +16,11 @@ export class Page1Page {
     toUser: UserInfo;
     editorMsg = '';
     showEmojiPicker = false;
-
+   
     constructor(navParams: NavParams,
                 private chatService: ChatService,
                 private events: Events,
-                public modalCtrl: ModalController) {
+                ) {
         // Get the navParams toUserId parameter
         this.toUser = {
             id: '210000198410281948',//navParams.get('toUserId')
@@ -143,11 +143,5 @@ export class Page1Page {
        
     }
 
-    openAddItemModal(){
-        this.openModal('PopupModalPage');
-    }
-    openModal(pageName) {
-    this.modalCtrl.create(pageName, null, { cssClass: 'inset-modal',enableBackdropDismiss: true })
-        .present();
-    }
+    
 }

@@ -9,7 +9,7 @@
   <ion-content no-bounce>
     <super-tabs id="mainTabs" [config]="{ sideMenu: 'left' }" scrollTabs toolbarColor="dark"  indicatorColor="yellow" badgeColor="yellow" (tabSelect)="onTabSelect($event)">
       <super-tab [swipeBackEnabled]="false" [root]="page1" [title]="showTitles? 'Personal' : ''" [icon]="showIcons? 'home': ''" id="{{page1}}"></super-tab>
-      <super-tab [root]="page2" badge="5" [title]="showTitles? 'Groups' : ''" [icon]="showIcons? 'trending-up' : ''" id="{{page2}}"></super-tab>
+      <super-tab [root]="page2" [title]="showTitles? 'Groups' : ''" [icon]="showIcons? 'trending-up' : ''" id="{{page2}}"></super-tab>
       <super-tab [root]="page3" [title]="showTitles? 'Reports' : ''" [icon]="showIcons? 'heart' : ''" id="{{page3}}"></super-tab>
       <super-tab [root]="page4" [title]="showTitles? 'Refer' : ''" [icon]="showIcons? 'heart' : ''" id="{{page4}}"></super-tab>
      <!-- more tabs for testing color="dark" toolbarBackground="dark"-->

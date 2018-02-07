@@ -1,7 +1,7 @@
   <ion-content>
     <ion-list>
       <ion-list-header>Groups</ion-list-header>
-      <ion-item navPush="GrouptransactionPage" [navParams]="toUser">
+      <ion-item (click)="gotoGrouptransactionPage();">
         <ion-avatar item-start>
           <img src="assets/img/avatar/marty-avatar.png">
         </ion-avatar>
@@ -22,13 +22,6 @@
         <!-- <ion-note item-end>11:11 pm</ion-note> -->
       </ion-item>
     </ion-list>
-    <ion-fab bottom right >
-        <button ion-fab class="pop-in" color="primary"> <ion-icon  name="add"></ion-icon></button>
-        <ion-fab-list side="top">
-          <button ion-fab color="primary" (click)="openSignupModal()">
-            Add
-          </button>
-        </ion-fab-list>
-      </ion-fab>
+    <popup-menu> </popup-menu>
   </ion-content>
   

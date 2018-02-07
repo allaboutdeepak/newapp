@@ -44,4 +44,7 @@ export class Page2Page {
     this.modalCtrl.create(pageName, null, { cssClass: 'inset-modal',enableBackdropDismiss: true })
       .present();
   }
+  gotoGrouptransactionPage(){
+    this.navCtrl.parent.parent.push('GrouptransactionPage');
+  }
 }

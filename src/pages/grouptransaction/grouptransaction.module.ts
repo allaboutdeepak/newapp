@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { GrouptransactionPage } from "./grouptransaction";
 import {ChatService} from "../../providers/chat-service";
+import { SharedModule } from '../../app/shared.module';
 //import {RelativeTime} from "../../pipes/relative-time";
 //import {EmojiPickerComponentModule} from "../../components/emoji-picker/emoji-picker.module";
 //import {EmojiProvider} from "../../providers/emoji";
@@ -13,6 +14,7 @@ import {ChatService} from "../../providers/chat-service";
   ],
   imports: [
     //EmojiPickerComponentModule,
+    SharedModule,
     IonicPageModule.forChild(GrouptransactionPage)
   ],
   exports: [

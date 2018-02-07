@@ -1,0 +1,30 @@
+<div class="popup-menu">
+		<div class="popup-menu-overlay" [ngClass]="{'in': openMenu}" (click)="togglePopupMenu()"></div>
+		<div class="popup-menu-toggle" (click)="togglePopupMenu()" [ngClass]="{'out': openMenu}"></div>
+		<div class="popup-menu-panel" [ngClass]="{'in': openMenu}">
+			<div class="popup-menu-item" (click)="openAddItemModal()">
+				<ion-icon name="add-circle"></ion-icon>
+				<span>Add new</span>
+			</div>
+			<div class="popup-menu-item" (click)="goToCups()">
+				<ion-icon name="logo-usd"></ion-icon>
+				<span>Total</span>
+			</div>
+			<div class="popup-menu-item" (click)="goToLeaderboard()">
+				<ion-icon name="podium"></ion-icon>
+				<span>Sattel</span>
+			</div>
+			<div class="popup-menu-item" (click)="goToShop()">
+				<ion-icon name="cart"></ion-icon>
+				<span>Report</span>
+            </div>
+            <div class="popup-menu-item" (click)="goToHelp()">
+                    <ion-icon name="help"></ion-icon>
+                    <span>HELP</span>
+            </div>
+            <div class="popup-menu-item" (click)="goToHelp()">
+                    <ion-icon name="information-circle"></ion-icon>
+                    <span>FAQ</span>
+            </div>
+		</div>
+	</div>

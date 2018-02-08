@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams,ModalController,LoadingController } from 'ionic-angular';
 import { Events, Content, TextInput } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat-service";
+import { TransactionsProvider } from '../../providers/transaction/transaction';
 @IonicPage()
 @Component({
   selector: 'page-page1',
@@ -16,10 +17,13 @@ export class Page1Page {
     toUser: UserInfo;
     editorMsg = '';
     showEmojiPicker = false;
-   
+    allmytransactions;
     constructor(navParams: NavParams,
                 private chatService: ChatService,
                 private events: Events,
+                public modalCtrl: ModalController,
+                public loadingCtrl: LoadingController,
+                public  transactionservice: TransactionsProvider,
                 ) {
         // Get the navParams toUserId parameter
         this.toUser = {
@@ -32,7 +36,19 @@ export class Page1Page {
             this.user = res
         });
     }
-
+    ionViewWillEnter() {
+        let loader = this.loadingCtrl.create({
+          content: 'Getting your transactions, Please wait...'
+        });
+        loader.present();
+        this.transactionservice.getmytransactions();
+        loader.dismiss();
+        this.events.subscribe('newtransaction', () => {
+          this.allmytransactions = this.transactionservice.mytransactions;
+          console.log(this.allmytransactions);
+        })
+      }
+      
     ionViewWillLeave() {
         // unsubscribe
         this.events.unsubscribe('chat:received');

@@ -1,46 +1,64 @@
 // import { FormBuilder, FormControl, Validator } from '@angular/forms';
 import { Component } from '@angular/core';
-import { AlertController, App, LoadingController, IonicPage,NavController } from 'ionic-angular';
-//import { Storage } from '@ionic/storage';
+import { AlertController, App, LoadingController, IonicPage,NavController,NavParams,ToastController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { UserProvider } from '../../providers/user/user';
 @IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-
+  newuser = {
+    email: '',
+    password: '',
+    displayName: ''
+  }
   public loginForm: any;
   public backgroundImage = 'assets/img/background/background-5.jpg';
 
   constructor(
-    public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,
-    public app: App,
-    //private storage: Storage,
     public navCtrl: NavController,
+    public navParams: NavParams,
+    public userservice: UserProvider,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController,
+    public storage: Storage
   ) { }
 
-  login() {
-    const loading = this.loadingCtrl.create({
-      duration: 500
-    });
-
-    loading.onDidDismiss(() => {
-      const alert = this.alertCtrl.create({
-        title: 'Logged in!',
-        subTitle: 'Thanks for logging in.',
-        buttons: ['Dismiss']
-      });
-      alert.present();
-     // this.storage.set('loggedIn', true);
-    });
-
-    loading.present();
-
+signup() {
+  var toaster = this.toastCtrl.create({
+    duration: 3000,
+    position: 'bottom'
+  });
+  if (this.newuser.email == '' || this.newuser.password == '' || this.newuser.displayName == '') {
+    toaster.setMessage('All fields are required dude');
+    toaster.present();
   }
+  else if (this.newuser.password.length < 7) {
+    toaster.setMessage('Password is not strong. Try giving more than six characters');
+    toaster.present();
+  }
+  else {
+    let loader = this.loadingCtrl.create({
+      content: 'Please wait'
+    });
+    loader.present();
+    this.userservice.adduser(this.newuser).then((res: any) => {
+      loader.dismiss();
+      if (res.success){
+        this.storage.set('loggedIn', true);
+        this.navCtrl.setRoot('HomePage');
+      }else{
+        alert('Error' + res);
+      }
+    })
+  }
+} 
+
 
   goToLogin() {
-     this.navCtrl.push('SigninPage');
+     this.navCtrl.push('LoginPage');
   }
 
   // Gradient logic from https://codepen.io/quasimondo/pen/lDdrF

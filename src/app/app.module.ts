@@ -5,7 +5,6 @@ import { MyApp } from './app.component';
 import { IonicStorageModule } from "@ionic/storage"; //<-add this
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import { MODULES, PROVIDERS } from './app.imports';
-
 @NgModule({
   declarations: [
     // App Core

@@ -1,24 +1,11 @@
   <ion-content>
     <ion-list>
-      <ion-list-header>Groups</ion-list-header>
-      <ion-item (click)="gotoGrouptransactionPage();">
+      <ion-item (click)="gotoGrouptransactionPage(item.groupName);" *ngFor="let item of allmygroups" >
         <ion-avatar item-start>
-          <img src="assets/img/avatar/marty-avatar.png">
+          <img src="{{item.groupimage}}">
         </ion-avatar>
-        <h2>Group 1</h2>
-      </ion-item>
-      <ion-item navPush="GrouptransactionPage" [navParams]="toUser">
-        <ion-avatar item-start>
-          <img src="assets/img/avatar/marty-avatar.png">
-        </ion-avatar>
-        <h2>Group 2</h2>
-      </ion-item>
-      <ion-item navPush="GrouptransactionPage" [navParams]="toUser">
-        <ion-avatar item-start>
-          <img src="assets/img/avatar/marty-avatar.png">
-        </ion-avatar>
-        <h2>Group 3</h2>
-        <!-- <p>Lorem ipsum dolor sit amet..</p> -->
+        <h2>{{item.groupName}}</h2>
+         <!-- <p>Lorem ipsum dolor sit amet..</p> -->
         <!-- <ion-note item-end>11:11 pm</ion-note> -->
       </ion-item>
     </ion-list>

@@ -3,15 +3,15 @@
     <ion-navbar>
     </ion-navbar>
   </ion-header>
-  <img class="logo" src="assets/img/logo/logo-instagram.png" />
+  <img class="logo" src="assets/user.jpg" />
   <div padding>
     <ion-item>
-      <ion-input type="text" placeholder="Username"></ion-input>
+      <ion-input type="text" placeholder="Username" [(ngModel)]="credentials.email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" placeholder="Password"></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="credentials.password"></ion-input>
     </ion-item>
-    <button ion-button block outline (click)="login()" color="light" class="login-button">Login</button>
+    <button ion-button block outline (click)="signin()" color="light" class="login-button">Login</button>
   </div>
   <div class="strike">
     <span>OR</span>
@@ -20,7 +20,7 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar class="footer">
-    <div (click)="goToSignup()">
+    <div (click)="signup()">
       <span>Don't have an account? <strong>Sign up here</strong>.</span>
     </div>
   </ion-toolbar>

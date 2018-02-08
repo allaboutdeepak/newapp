@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { ModalController,IonicPage, NavParams } from 'ionic-angular';
+import { NavController,ModalController,IonicPage, NavParams,ActionSheetController, LoadingController } from 'ionic-angular';
 import { Events, Content, TextInput } from 'ionic-angular';
 import { ChatService, ChatMessage, UserInfo } from "../../providers/chat-service";
+import firebase from 'firebase';
+import { GroupsProvider } from '../../providers/groups/groups';
 @IonicPage()
 @Component({
   selector: 'page-grouptransaction',
@@ -17,9 +19,23 @@ export class GrouptransactionPage {
     editorMsg = '';
     showEmojiPicker = false;
 
+
+    groupName="dailyexpense";
+    owner: boolean = false;
+    newmessage;
+    allgroupmsgs;
+    alignuid;
+    photoURL;
+    imgornot;
+
     constructor(navParams: NavParams,
                 private chatService: ChatService,
-                private events: Events, public modalCtrl: ModalController) {
+                 public modalCtrl: ModalController,
+                 public navCtrl: NavController,
+                   public groupservice: GroupsProvider,
+                public actionSheet: ActionSheetController,
+                 public events: Events,
+                   public loadingCtrl: LoadingController) {
         // Get the navParams toUserId parameter
         this.toUser = {
             id: '210000198410281948',//navParams.get('toUserId')
@@ -30,7 +46,105 @@ export class GrouptransactionPage {
         .then((res) => {
             this.user = res
         });
+
+        this.alignuid = firebase.auth().currentUser.uid;
+        this.photoURL = firebase.auth().currentUser.photoURL;
+        this.groupName = navParams.get('groupName');
+        this.groupservice.getownership(this.groupName).then((res) => {
+          if (res)
+            this.owner = true;  
+        }).catch((err) => {
+          alert(err);
+          })
+
+
     }
+
+    presentOwnerSheet() {
+        let sheet = this.actionSheet.create({
+          title: 'Group Actions',
+          buttons: [
+            {
+              text: 'Add member',
+              icon: 'person-add',
+              handler: () => {
+                this.navCtrl.push('GroupbuddiesPage');
+              }
+            },
+            {
+              text: 'Remove member',
+              icon: 'remove-circle',
+              handler: () => {
+                this.navCtrl.push('GroupmembersPage');
+              }
+            },
+            {
+              text: 'Group Info',
+              icon: 'person',
+              handler: () => {
+                this.navCtrl.push('GroupinfoPage', {groupName: this.groupName});
+              }
+            },
+            {
+              text: 'Delete Group',
+              icon: 'trash',
+              handler: () => {
+                this.groupservice.deletegroup().then(() => {
+                  this.navCtrl.pop();
+                }).catch((err) => {
+                  console.log(err);
+                })
+              }
+            },
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              icon: 'cancel',
+              handler: () => {
+                console.log('Cancelled');
+              }
+            }
+          ]
+        })
+        sheet.present();
+      }
+    
+      presentMemberSheet() {
+        let sheet = this.actionSheet.create({
+          title: 'Group Actions',
+          buttons: [
+            {
+              text: 'Leave Group',
+              icon: 'log-out',
+              handler: () => {
+                this.groupservice.leavegroup().then(() => {
+                  this.navCtrl.pop();
+                }).catch((err) => {
+                  console.log(err);
+                })
+              }
+            },
+            {
+              text: 'Group Info',
+              icon: 'person',
+              handler: () => {
+                this.navCtrl.push('GroupinfoPage', {groupName: this.groupName});
+              }
+            },
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              icon: 'cancel',
+              handler: () => {
+                console.log('Cancelled');
+              }
+            }
+          ]
+        })
+        sheet.present();
+      }
+
+
 
     ionViewWillLeave() {
         // unsubscribe

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController,ModalController,LoadingController,Events } from 'ionic-angular';
 
 /**
  * Generated class for the TransactionCardComponent component.
@@ -11,12 +12,12 @@ import { Component } from '@angular/core';
   templateUrl: 'transaction-card.html'
 })
 export class TransactionCardComponent {
+  
+ 
 
-  text: string;
-
-  constructor() {
+  constructor(public navCtrl: NavController,
+    public events: Events) {
     console.log('Hello TransactionCardComponent Component');
-    this.text = 'Hello World';
   }
-
+  
 }

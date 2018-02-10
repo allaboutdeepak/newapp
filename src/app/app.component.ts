@@ -54,35 +54,17 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashscreen.hide();
       this.menuCtrl.enable(false, 'right');
-      const firebaseConfig = {
-          apiKey: 'AIzaSyD2WkDHlTxMgPolz6oCLnYlwCuCWPyr7iM',
-          authDomain: 'cybershock-bd98a.firebaseapp.com', //cybershock-bd98a.firebaseapp.com
-          databaseURL: 'https://cybershock-bd98a.firebaseio.com/',
-          projectId: 'cybershock-bd98a',
-          storageBucket: 'gs://cybershock-bd98a.appspot.com/',
-          messagingSenderId: '182972841011'
-      };
-      firebase.initializeApp(firebaseConfig);
   
       this.storage.get('walkthrough').then((walkthrough) => {
         if(walkthrough){
-
-            const unsubscribe = firebase.auth().onAuthStateChanged( user => {
-              if (user){
-                this.rootPage = 'HomePage';;
-                unsubscribe();
-              } else {
-                this.rootPage ='SignupotpPage';
-                unsubscribe();
+          
+          this.storage.get('loggedIn').then((loggedIn) => {
+              if(loggedIn){
+                this.rootPage='HomePage';
+              }else{
+                this.rootPage='LoginPage';
               }
             });
-          /*this.storage.get('loggedIn').then((loggedIn) => {
-            if(loggedIn){
-              this.rootPage='HomePage';
-            }else{
-              this.rootPage='SignupotpPage';
-            }
-          });*/
         }else{
           this.rootPage='SlideWalkthroughPage';
         }
@@ -93,7 +75,8 @@ export class MyApp {
 
   logout() {
     firebase.auth().signOut().then(() => {
-      this.nav.setRoot('SignupotpPage');
+      this.nav.setRoot('LoginPage');
+      this.storage.remove('loggedIn');
     })
   }
 

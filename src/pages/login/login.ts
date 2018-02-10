@@ -1,13 +1,17 @@
 // import { FormBuilder, FormControl, Validator } from '@angular/forms';
 import { Component } from '@angular/core';
-import { AlertController, App, LoadingController, IonicPage,NavController } from 'ionic-angular';
+import { AlertController, App, LoadingController, IonicPage,NavController,NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { usercreds } from '../../models/interfaces/usercreds';
+import { AuthProvider } from '../../providers/auth/auth';
 @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
+
+  credentials = {} as usercreds;
 
   public loginForm: any;
   public backgroundImage = 'assets/img/background/background-5.jpg';
@@ -18,26 +22,30 @@ export class LoginPage {
     public app: App,
     private storage: Storage,
     public navCtrl: NavController,
+    public navParams: NavParams,
+     public authservice: AuthProvider
   ) { }
 
-  login() {
-    const loading = this.loadingCtrl.create({
-      duration: 500
+  signin() {
+    let loading = this.loadingCtrl.create({
+      content: 'Logging Please wait...'
     });
-
-    loading.onDidDismiss(() => {
-      const alert = this.alertCtrl.create({
-        title: 'Logged in!',
-        subTitle: 'Thanks for logging in.',
-        buttons: ['Dismiss']
-      });
-      alert.present();
-      this.storage.set('loggedIn', true);
-      this.navCtrl.setRoot('HomePage');
-    });
-
     loading.present();
-
+    this.authservice.login(this.credentials).then((res: any) => {
+      console.log(res);
+      if (!res.code){
+        loading.dismiss();
+        this.storage.set('loggedIn', true);
+        this.navCtrl.setRoot('HomePage');
+      }
+      else{
+        loading.dismiss();
+         alert(res);
+      }
+    })
+  }
+  signup() {
+    this.navCtrl.push('SignupPage');
   }
 
   goToSignup() {

@@ -1,0 +1,20 @@
+<div class="container p-15 mt-35">
+    <ion-row class="text-center">
+    <h2 class="text-center"> Add items</h2>
+    </ion-row>
+    <ion-row class="">
+        <ion-col class="p-0">
+          <ion-list>
+           <ion-item class="pl-0">
+                 <ion-input [(ngModel)]="newgroup.groupName" name="groupName" type="text" placeholder="groupname"  class="form-control" >
+           </ion-input>
+           </ion-item>
+         
+       <ion-item class="pl-0 btn-sm">
+            <button ion-button class="btn submit-btn fs-16" full type="submit" (click)="creategroup()">Save</button>
+        </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+  </div>

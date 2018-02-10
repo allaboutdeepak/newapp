@@ -2,6 +2,11 @@
 import { AppState } from './app.global';
 
 // Providers
+import { AuthProvider } from '../providers/auth/auth';
+import { UserProvider } from '../providers/user/user';
+import { GroupsProvider } from '../providers/groups/groups';
+import { TransactionsProvider } from '../providers/transaction/transaction';
+import { RequestsProvider } from '../providers/requests/requests';
 //import { ToastService } from '../providers/util/toast.service';
 //import { AlertService } from '../providers/util/alert.service';
 //import { CameraProvider } from '../providers/util/camera.provider';
@@ -24,28 +29,27 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 //import { SwingModule } from 'angular2-swing';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { config } from './app.firebaseconfig';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
+
 export const MODULES = [
-  //SwingModule,
   BrowserModule,
-  HttpClientModule
+  HttpClientModule,
+  AngularFireModule.initializeApp(config)
 ];
 
 export const PROVIDERS = [
-  //AlertService,
-  //ToastService,
   AppState,
-  //CameraProvider,
-  //NativeGoogleMapsProvider,
-
-  // Ionic native specific providers
-  //BarcodeScanner,
-  //Camera,
-  //Diagnostic,
-  //Geolocation,
-  //CardIO,
   StatusBar,
-  SplashScreen
-  //GoogleMaps,
+  SplashScreen,
+  AuthProvider,
+  AngularFireAuth,
+  UserProvider,
+  GroupsProvider,
+  TransactionsProvider,
+  RequestsProvider
+
 ];
 
 export const DIRECTIVES = [

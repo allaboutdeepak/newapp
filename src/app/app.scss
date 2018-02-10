@@ -170,6 +170,32 @@
     font-weight: 400;
   }
   ion-icon {
-    color: #777;
+    color: rgba(0, 0, 0, 0.67);
+    font-size: 22px;
+  }
+
+
+
+}
+/* custom css added here*/
+ion-menu{
+  .menu-header{
+    background-color: #0084ff !important;
+    padding: 8px 15px;
+  }
+   .user-avatar{
+    padding: 1px;
+    height: 13vh;
+  }
+ 
+  h3, .label{
+    color: rgba(0, 0, 0, 0.67);
+    font-size: 14px;
+  }
+  .label-md {
+    margin: 13px 8px 18px 0;
+  }
+  .list-md {
+    margin: 8px 0 16px;
   }
 }

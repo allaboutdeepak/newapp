@@ -55,7 +55,9 @@ export class Page2Page {
   openSignupModal() {
     this.openModal('PopupModalPage');
   }
-
+  segmentChanged(e){
+    this.openModal('PopupModalPage');
+  }
   openModal(pageName) {
     this.modalCtrl.create(pageName, null, { cssClass: 'inset-modal',enableBackdropDismiss: true })
       .present();

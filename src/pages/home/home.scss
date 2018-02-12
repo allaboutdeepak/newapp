@@ -9,5 +9,24 @@ page-home {
   sliding-drawer .content {
       padding: 20px;
   }
+  .toolbar-title-md {
+    color: #ffffff !important;
+  }
+  .text-md-dark {
+    color: #ffffff !important;
+  }
+  
+  .toolbar-background-md {
+    border-color: #0084ff !important;
+    background: #0084ff !important;
+  }
+
+  .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+    color: #ffffff;
+  }
+
+  super-tab-button.title-only.selected {
+    border-bottom: 3px solid #fff;
+}
 }
 

@@ -1,4 +1,19 @@
   <ion-content>
+      <ion-searchbar
+      [(ngModel)]="myInput"
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+    <!-- Segment in content -->
+  <ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="New Group">
+        New Group
+      </ion-segment-button>
+      <ion-segment-button value="Invite friend">
+        Invite Friend
+      </ion-segment-button>
+    </ion-segment>
     <ion-list>
       <ion-item (click)="gotoGrouptransactionPage(item.groupName);" *ngFor="let item of allmygroups" >
         <ion-avatar item-start>

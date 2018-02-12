@@ -177,4 +177,19 @@ popup-menu {
         -webkit-transition-delay: 0.15s;
         transition-delay: 0.15s;
       }
+
+      .popup-menu-toggle {
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        bottom: 30px;
+        right: 15px;
+        background-color: #0084ff;
+    }
+     .popup-menu-toggle:before{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+    
 }

@@ -34,7 +34,7 @@ export class SlideWalkthroughPage {
 
   constructor(public navCtrl: NavController) { 
     if(localStorage.getItem('walkthrough')){
-      this.navCtrl.setRoot('LoginPage');
+      this.navCtrl.setRoot('SignupotpPage');
     }
   }
 
@@ -44,10 +44,10 @@ export class SlideWalkthroughPage {
 
   goToApp() {
     localStorage.setItem('walkthrough',  JSON.stringify(true));
-    this.navCtrl.setRoot('LoginPage');
+    this.navCtrl.setRoot('SignupotpPage');
   }
 
   skip() {
-    this.navCtrl.setRoot('LoginPage');
+    this.navCtrl.setRoot('SignupotpPage');
   }
 }

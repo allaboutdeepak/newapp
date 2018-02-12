@@ -14,12 +14,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from "@angular/http";
-import { MomentModule } from 'angular2-moment';
+//import { MomentModule } from 'angular2-moment';
 export const MODULES = [
   BrowserModule,
   HttpClientModule,
   HttpModule,
-  MomentModule
+  //MomentModule
 ];
 
 export const PROVIDERS = [

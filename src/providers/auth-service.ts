@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class AuthService {
-  apiUrl = "http://expense.unaux.com/apis/";
+  apiUrl = "http://banbasa.com/api/v1/";
   constructor(public http: Http) {
     console.log('Hello AuthService Provider');
   }

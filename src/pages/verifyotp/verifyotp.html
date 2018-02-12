@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Verify OTP</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <h1>Verification code</h1>
+  <p>Please type the verification code sent to +91 {{mobile}}</p>
+  <table>
+      <tr>
+        <td>
+          <ion-input type="text" #otp1 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp2)">
+          </ion-input>
+        </td>
+        <td>
+          <ion-input type="text" #otp2 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp3)">
+          </ion-input>
+        </td>
+        <td>
+          <ion-input type="text" #otp3 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp4)">
+          </ion-input>
+        </td>
+        <td>
+          <ion-input type="text" #otp4 class="otp" pattern="[0-9]{6}" maxlength="1" size="1">
+          </ion-input>
+        </td>
+      </tr>
+    </table>
+    <ion-item no-lines>
+        <button  class="btn submit-btn " ion-button id="sign-in-button" (click)="verifyOTP()">
+            Submit
+          </button>
+       </ion-item>
+    <div class="text-center">
+        <span>OR</span>
+      </div>
+      <p>Did not recieve otp? <a href="javascript:;" (click)="resendOTP();">Re-Send</a></p>
+</ion-content>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 //import { NgForm } from '@angular/forms';
 import {  AlertController, LoadingController } from 'ionic-angular';
-import { GroupsProvider } from '../../providers/groups/groups';
+import { GroupsProvider } from '../../providers/groups';
 @Component({
   selector: 'add-group',
   templateUrl: 'add-group.html'
@@ -21,16 +21,16 @@ export class AddGroupComponent {
   }
 
   creategroup() {
-    let loader = this.loadingCtrl.create({
-      content: 'Loading, please wait..'
-    });
-    loader.present();
-    this.groupservice.addgroup(this.newgroup).then(() => {
-      loader.dismiss();
-      alert('New group created');
-    }).catch((err) => {
-      alert(JSON.stringify(err));
-    })
+    // let loader = this.loadingCtrl.create({
+    //   content: 'Loading, please wait..'
+    // });
+    // loader.present();
+    // this.groupservice.addgroup(this.newgroup).then(() => {
+    //   loader.dismiss();
+    //   alert('New group created');
+    // }).catch((err) => {
+    //   alert(JSON.stringify(err));
+    // })
   }
 
 }

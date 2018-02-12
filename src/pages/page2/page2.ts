@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController,ModalController, NavParams, IonicPage,LoadingController,Events } from 'ionic-angular';
-import { GroupsProvider } from '../../providers/groups/groups';
+import { GroupsProvider } from '../../providers/groups';
 @IonicPage()
 @Component({
   selector: 'page-page2',
@@ -27,9 +27,7 @@ export class Page2Page {
     loader.present();
     this.groupservice.getmygroups();
     loader.dismiss();
-    this.events.subscribe('newgroup', () => {
-      this.allmygroups = this.groupservice.mygroups;
-    })
+    
   }
   ionViewDidLeave() {
     this.events.unsubscribe('newgroup');

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { GroupsProvider } from '../../providers/groups/groups';
+import { GroupsProvider } from '../../providers/groups';
 
 /**
  * Generated class for the GroupmembersPage page.
@@ -56,7 +56,7 @@ export class GroupmembersPage {
   }
 
   removemember(member) {
-    this.groupservice.deletemember(member);
+   // this.groupservice.deletemember(member);
   }
 
 }

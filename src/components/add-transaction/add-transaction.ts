@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AlertController, LoadingController } from 'ionic-angular';
-import { TransactionsProvider } from '../../providers/transaction/transaction';
+import { TransactionsProvider } from '../../providers/transactions';
 @Component({
   selector: 'add-transaction',
   templateUrl: 'add-transaction.html'
@@ -18,19 +18,19 @@ export class AddTransactionComponent {
   }
 
   onLogin(form: NgForm) {
-    this.submitted = true;
-    if (form.valid) {
-      let loader = this.loadingCtrl.create({
-        content: 'Loading, please wait..'
-      });
-      loader.present();
-      this.transactionservice.addTransaction(this.transaction).then(() => {
-        loader.dismiss();
-        alert('New transaction created');
-      }).catch((err) => {
-        alert(JSON.stringify(err));
-      })
+    // this.submitted = true;
+    // if (form.valid) {
+    //   let loader = this.loadingCtrl.create({
+    //     content: 'Loading, please wait..'
+    //   });
+    //   loader.present();
+    //   this.transactionservice.addTransaction(this.transaction).then(() => {
+    //     loader.dismiss();
+    //     alert('New transaction created');
+    //   }).catch((err) => {
+    //     alert(JSON.stringify(err));
+    //   })
 
-    }
+    // }
   }
 }

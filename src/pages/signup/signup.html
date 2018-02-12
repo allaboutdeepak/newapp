@@ -5,21 +5,24 @@
   </ion-header>
   <img class="logo" src="assets/user.jpg" />
   <div padding>
+      <ion-item>
+          <ion-input type="text" placeholder="Name" [(ngModel)]="userData.name"></ion-input>
+        </ion-item>
     <ion-item>
-      <ion-input type="email" placeholder="Email" [(ngModel)]="newuser.email"></ion-input>
+      <ion-input type="email" placeholder="Email" [(ngModel)]="userData.email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="password" placeholder="Password" [(ngModel)]="newuser.password"></ion-input>
+      <ion-input type="password" placeholder="Password" [(ngModel)]="userData.password"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Nick Name" [(ngModel)]="newuser.displayName"></ion-input>
+      <ion-input type="text" placeholder="username" [(ngModel)]="userData.username"></ion-input>
     </ion-item>
     <button ion-button block outline (click)="signup()" color="light" class="login-button">Signup</button>
   </div>
   <div class="strike">
     <span>OR</span>
   </div>
-  <button ion-button block clear (click)="goToLogin()" color="light" class="login-button"><ion-icon name="logo-facebook"></ion-icon> Signup with Facebook</button>
+  <button ion-button block clear color="light" class="login-button"><ion-icon name="logo-facebook"></ion-icon> Signup with Facebook</button>
 </ion-content>
 <ion-footer>
   <ion-toolbar class="footer">

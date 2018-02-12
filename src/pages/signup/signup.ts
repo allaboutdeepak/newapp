@@ -1,124 +1,57 @@
-// import { FormBuilder, FormControl, Validator } from '@angular/forms';
 import { Component } from '@angular/core';
 import { AlertController, App, LoadingController, IonicPage,NavController,NavParams,ToastController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { UserProvider } from '../../providers/user/user';
+import {AuthService} from "../../providers/auth-service";
 @IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-  newuser = {
-    email: '',
-    password: '',
-    displayName: ''
-  }
-  public loginForm: any;
-  public backgroundImage = 'assets/img/background/background-5.jpg';
-
+  resposeData : any;
+  userData = {"username":"", "password":"","email":"","name":""};
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public userservice: UserProvider,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
-    public storage: Storage
+    public authService : AuthService,
   ) { }
 
-signup() {
-  var toaster = this.toastCtrl.create({
-    duration: 3000,
-    position: 'bottom'
-  });
-  if (this.newuser.email == '' || this.newuser.password == '' || this.newuser.displayName == '') {
-    toaster.setMessage('All fields are required dude');
-    toaster.present();
-  }
-  else if (this.newuser.password.length < 7) {
-    toaster.setMessage('Password is not strong. Try giving more than six characters');
-    toaster.present();
+  signup() {
+    if(this.userData.username && this.userData.password && this.userData.email && this.userData.name){
+      //Api connections
+    this.authService.postData(this.userData, "signup").then((result) =>{
+    this.resposeData = result;
+    if(this.resposeData.userData){
+      console.log(this.resposeData);
+      localStorage.setItem('userData', JSON.stringify(this.resposeData) )
+      this.navCtrl.push('HomePage');
+    }
+    else{
+      this.presentToast("Please give valid username and password");
+    }
+    
+    }, (err) => {
+      //Connection failed message
+    });
   }
   else {
-    let loader = this.loadingCtrl.create({
-      content: 'Please wait'
-    });
-    loader.present();
-    this.userservice.adduser(this.newuser).then((res: any) => {
-      loader.dismiss();
-      if (res.success){
-        this.storage.set('loggedIn', true);
-        this.navCtrl.setRoot('HomePage');
-      }else{
-        alert('Error' + res);
-      }
-    })
+    console.log("Give valid information.");
   }
-} 
+  
+  }
 
 
-  goToLogin() {
+goToLogin() {
      this.navCtrl.push('LoginPage');
   }
 
-  // Gradient logic from https://codepen.io/quasimondo/pen/lDdrF
-  // NOTE: I'm not using this logic anymore, but if you want to use somehow, somewhere,
-  // A programmatically way to make a nice rainbow effect, there you go.
-  // NOTE: It probably won't work because it will crash your phone as this method is heavy \o/
-  colors = new Array(
-    [62, 35, 255],
-    [60, 255, 60],
-    [255, 35, 98],
-    [45, 175, 230],
-    [255, 0, 255],
-    [255, 128, 0]);
-
-  step = 0;
-  // color table indices for:
-  // [current color left,next color left,current color right,next color right]
-  colorIndices = [0, 1, 2, 3];
-
-  // transition speed
-  gradientSpeed = 0.00005;
-  gradient = '';
-
-  updateGradient() {
-
-    const c00 = this.colors[this.colorIndices[0]];
-    const c01 = this.colors[this.colorIndices[1]];
-    const c10 = this.colors[this.colorIndices[2]];
-    const c11 = this.colors[this.colorIndices[3]];
-
-    const istep = 1 - this.step;
-    const r1 = Math.round(istep * c00[0] + this.step * c01[0]);
-    const g1 = Math.round(istep * c00[1] + this.step * c01[1]);
-    const b1 = Math.round(istep * c00[2] + this.step * c01[2]);
-    const color1 = 'rgb(' + r1 + ',' + g1 + ',' + b1 + ')';
-
-    const r2 = Math.round(istep * c10[0] + this.step * c11[0]);
-    const g2 = Math.round(istep * c10[1] + this.step * c11[1]);
-    const b2 = Math.round(istep * c10[2] + this.step * c11[2]);
-    const color2 = 'rgb(' + r2 + ',' + g2 + ',' + b2 + ')';
-
-    this.gradient = `-webkit-gradient(linear, left top, right bottom, from(${color1}), to(${color2}))`;
-    this.step += this.gradientSpeed;
-    if (this.step >= 1) {
-      this.step %= 1;
-      this.colorIndices[0] = this.colorIndices[1];
-      this.colorIndices[2] = this.colorIndices[3];
-
-      // pick two new target color indices
-      // do not pick the same as the current one
-      this.colorIndices[1] =
-        (this.colorIndices[1] + Math.floor(1 + Math.random() * (this.colors.length - 1)))
-        % this.colors.length;
-
-      this.colorIndices[3] =
-        (this.colorIndices[3] + Math.floor(1 + Math.random() * (this.colors.length - 1)))
-        % this.colors.length;
-
-    }
-
-    setInterval(() => { this.updateGradient(); }, 40);
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
   }
+
 }

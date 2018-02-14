@@ -34,7 +34,18 @@ export class SlideWalkthroughPage {
 
   constructor(public navCtrl: NavController) { 
     if(localStorage.getItem('walkthrough')){
-      this.navCtrl.setRoot('SignupotpPage');
+
+      if(localStorage.getItem('userData')){
+        var user=JSON.parse(localStorage.getItem('userData')).userData;
+        if(user.otp_verified=="0"){
+          this.navCtrl.push('VerifyotpPage',{mobile: user.mobile,code:user.code});
+        }else{
+          this.navCtrl.setRoot('HomePage');
+        }
+      }else{
+         this.navCtrl.setRoot('SignupotpPage');
+      }
+
     }
   }
 
@@ -48,6 +59,7 @@ export class SlideWalkthroughPage {
   }
 
   skip() {
+    localStorage.setItem('walkthrough',  JSON.stringify(true));
     this.navCtrl.setRoot('SignupotpPage');
   }
 }

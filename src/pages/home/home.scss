@@ -9,19 +9,22 @@ page-home {
   sliding-drawer .content {
       padding: 20px;
   }
-  .toolbar-title-md {
+  .toolbar-title-md,.toolbar-title-ios,.toolbar-title-wp {
     color: #ffffff !important;
   }
   .text-md-dark {
     color: #ffffff !important;
   }
   
-  .toolbar-background-md {
+  .toolbar-background-md,.toolbar-background-ios,.toolbar-background-wp {
     border-color: #0084ff !important;
     background: #0084ff !important;
   }
 
   .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{
+    color: #ffffff;
+  }
+  .bar-button-default-ios, .bar-button-clear-ios-default, .bar-button-ios-default{
     color: #ffffff;
   }
 

@@ -12,7 +12,8 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class AuthService {
-  apiUrl = "http://banbasa.com/api/v1/";
+  //apiUrl = "http://banbasa.com/api/v1/";
+  apiUrl ="http://localhost/expense_api/apis/";
   constructor(public http: Http) {
     console.log('Hello AuthService Provider');
   }
@@ -31,5 +32,32 @@ export class AuthService {
     });
 
   }
+  sendotp(credentials, type){
 
+    return new Promise((resolve, reject) =>{
+      let headers = new Headers();
+      this.http.post(this.apiUrl+type, JSON.stringify(credentials), {headers: headers}).
+      subscribe(res =>{
+        resolve(res.json());
+      }, (err) =>{
+        reject(err);
+      });
+
+    });
+
+  }
+  verifyotp(credentials, type){
+
+    return new Promise((resolve, reject) =>{
+      let headers = new Headers();
+      this.http.post(this.apiUrl+type, JSON.stringify(credentials), {headers: headers}).
+      subscribe(res =>{
+        resolve(res.json());
+      }, (err) =>{
+        reject(err);
+      });
+
+    });
+
+  }
 }

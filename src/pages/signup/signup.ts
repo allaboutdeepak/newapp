@@ -20,7 +20,7 @@ export class SignupPage {
   signup() {
     if(this.userData.username && this.userData.password && this.userData.email && this.userData.name){
       //Api connections
-    this.authService.postData(this.userData, "signup").then((result) =>{
+    this.authService.sendotp(this.userData, "signup").then((result) =>{
     this.resposeData = result;
     if(this.resposeData.userData){
       console.log(this.resposeData);

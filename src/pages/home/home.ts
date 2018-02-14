@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams,MenuController} from 'ionic-angular';
 import {SuperTabs,SuperTabsController} from "ionic2-super-tabs";
 @IonicPage({
   segment: 'home/:type'
@@ -21,7 +21,9 @@ export class HomePage {
   showTitles: boolean = true;
   pageTitle: string = 'Page1Page';
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private superTabsCtrl: SuperTabsController) {
+  constructor(public menu: MenuController,public navCtrl: NavController, private navParams: NavParams, private superTabsCtrl: SuperTabsController) {
+    
+    this.menu.enable(true);
     const type = navParams.get('type');
     switch (type) {
       case 'icons-only':

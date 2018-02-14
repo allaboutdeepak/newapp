@@ -13,7 +13,7 @@
     <ion-input item-start  disabled name="country" type="text" placeholder="India (+91) "> </ion-input>
    </ion-item>
    <ion-item>
-     <ion-input item-end  minlength="10" maxlength="10" name="phoneNumber" type="number" [(ngModel)]="phoneNumber" placeholder="Mobile Number"> </ion-input>
+     <ion-input item-end  minlength="10" maxlength="10" name="phoneNumber" type="number" [(ngModel)]="userData.mobile" placeholder="Mobile Number"> </ion-input>
   </ion-item>
   <ion-item class="pl-0 btn-sm text-center">
       <button  class="btn submit-btn " ion-button id="sign-in-button" (click)="verifyMobile()">

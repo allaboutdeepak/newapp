@@ -10,19 +10,19 @@
   <table>
       <tr>
         <td>
-          <ion-input type="text" #otp1 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp2)">
+          <ion-input type="text"  [(ngModel)]="otp.otp1" #otp1 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp2)">
           </ion-input>
         </td>
         <td>
-          <ion-input type="text" #otp2 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp3)">
+          <ion-input type="text"  [(ngModel)]="otp.otp2" #otp2 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp3)">
           </ion-input>
         </td>
         <td>
-          <ion-input type="text" #otp3 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp4)">
+          <ion-input type="text"  [(ngModel)]="otp.otp3" #otp3 class="otp" pattern="[0-9]{6}" maxlength="1" size="1" (keyup)="next(otp4)">
           </ion-input>
         </td>
         <td>
-          <ion-input type="text" #otp4 class="otp" pattern="[0-9]{6}" maxlength="1" size="1">
+          <ion-input type="text"  [(ngModel)]="otp.otp4" #otp4 class="otp" pattern="[0-9]{6}" maxlength="1" size="1">
           </ion-input>
         </td>
       </tr>

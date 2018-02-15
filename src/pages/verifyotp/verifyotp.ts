@@ -8,7 +8,8 @@ import {AuthService} from "../../providers/auth-service";
 })
 export class VerifyotpPage {
   resposeData : any;
-  userData = {mobile:"", code:"91"};
+  userData = {mobile:"", otp:"", code:"91"};
+  otp={otp1:'',otp2:'',otp3:'',otp4:''};
   constructor(
       public authService : AuthService,
       public navCtrl: NavController,
@@ -19,7 +20,8 @@ export class VerifyotpPage {
         {
         if(localStorage.getItem('userData')){
           var user=JSON.parse(localStorage.getItem('userData')).userData;
-          if(user.otp_verified=="1"){
+          //alert(user.otp_verified);
+          if(user.otp_verified=="1" && user.otp_requested=="0"){
             this.navCtrl.setRoot('HomePage');
           }
           this.userData.mobile=user.mobile;
@@ -28,30 +30,30 @@ export class VerifyotpPage {
       }
     
     verifyOTP(){
-  
-      if(this.userData){
+      this.userData.otp=this.otp.otp1+this.otp.otp2+this.otp.otp3+this.otp.otp4;
+      if(this.userData && this.userData.otp!=''){
         this.authService.verifyotp(this.userData, "verifyOTP").then((result) =>{
           this.resposeData = result;
           if(this.resposeData.userData){
            
-            if(this.resposeData.userData && this.resposeData.userData.code==="201"){
+            if(this.resposeData.userData && this.resposeData.userData.code=="201"){
               this.presentToast("Invalid OTP");
             }else{
               localStorage.setItem('userData', JSON.stringify(this.resposeData) );
               
-            this.navCtrl.push('HomePage', {mobile: this.userData.mobile,code:this.userData.code});
+            this.navCtrl.setRoot('HomePage', {mobile: this.userData.mobile,code:this.userData.code});
             }
           }
           else{
-            this.presentToast("Please give valid username and password");
+            this.presentToast("Please provide valid OTP");
           }
           
           }, (err) => {
-            this.presentToast('Please provide valid mobile number error.');
+            this.presentToast('Please provide OTP.');
           });
         
       }else{
-        this.presentToast('Please provide valid mobile number.');
+        this.presentToast('Please provide OTP.');
       }    
      
     }

@@ -17,7 +17,7 @@ export class SignupotpPage {
     ) {
       if(localStorage.getItem('userData')){
         var user=JSON.parse(localStorage.getItem('userData')).userData;
-        if(user.otp_verified=="0"){
+        if(user.otp_verified=="0" && user.otp_requested=="1"){
           this.navCtrl.push('VerifyotpPage',{mobile: user.mobile,code:user.code});
         }else{
           this.navCtrl.setRoot('HomePage');

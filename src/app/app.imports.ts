@@ -14,12 +14,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from "@angular/http";
-//import { MomentModule } from 'angular2-moment';
+import { Contacts} from '@ionic-native/contacts';
+import { SocialSharing } from '@ionic-native/social-sharing';
 export const MODULES = [
   BrowserModule,
   HttpClientModule,
   HttpModule,
-  //MomentModule
 ];
 
 export const PROVIDERS = [
@@ -30,7 +30,8 @@ export const PROVIDERS = [
   Common,
   GroupsProvider,
   TransactionsProvider,
-
+  Contacts,
+  SocialSharing
 ];
 
 export const DIRECTIVES = [

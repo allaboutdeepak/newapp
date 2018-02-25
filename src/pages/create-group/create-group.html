@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Create Group</ion-title>
+        <ion-buttons end>
+        <button ion-button (click)="dismiss()">Cancel</button>
+        </ion-buttons>
+    </ion-navbar>
+    </ion-header>    
+  <ion-content>
+      <ion-row>
+          <ion-col class="p-0">
+             
+            <ion-list>
+             <ion-item class="pl-0">
+                <ion-avatar item-start>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/myapp-4eadd.appspot.com/o/chatterplace.png?alt=media&token=e51fa887-bfc6-48ff-87c6-e2c61976534e">
+                  </ion-avatar>
+                   <ion-input [(ngModel)]="newgroup.name" name="name" type="text" placeholder="Type group name"  class="form-control" >
+                    </ion-input>
+                  
+             </ion-item>
+             <p>Provide a group name and group icon</p> 
+            </ion-list> 
+            <ion-list *ngIf="newgroup.groupBuddies" >
+                <ion-list-header>
+                  <h2 style="display: inline-block;">Selected Contacts</h2>
+                </ion-list-header>
+                <ion-item *ngFor="let phone of newgroup.groupBuddies">
+                 <ion-avatar item-start>
+                      <p data-letters="MN"></p>
+                    </ion-avatar>
+                <ion-label>{{phone.name}} <br> {{phone.phone}}</ion-label>
+               </ion-item>
+            </ion-list> 
+            <ion-list><ion-item class="pl-0 btn-sm">
+                <button ion-button class="btn submit-btn fs-16" full type="submit" (click)="creategroup()">Create</button>
+            </ion-item>  
+          </ion-list>
+          </ion-col>
+        </ion-row>
+</ion-content>
+  

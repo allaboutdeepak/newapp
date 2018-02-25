@@ -21,10 +21,10 @@ export class GroupmembersPage {
   }
 
   ionViewWillEnter() {
-    this.groupmembers = this.groupservice.currentgroup;
+    //this.groupmembers = this.groupservice.currentgroup;
     this.tempgrpmembers = this.groupmembers;
     this.events.subscribe('gotintogroup', () => {
-      this.groupmembers = this.groupservice.currentgroup;
+     // this.groupmembers = this.groupservice.currentgroup;
       this.tempgrpmembers = this.groupmembers;
     })
     

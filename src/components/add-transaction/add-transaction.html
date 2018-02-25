@@ -1,9 +1,7 @@
 <div class="container p-15 mt-35">
-    <form #addForm="ngForm" novalidate class="form-signin">
+    <form #addForm="ngForm" novalidate class="form-signin" style="text-align:center">
    
-    <ion-row class="text-center">
-    <h2 class="text-center"> Add items</h2>
-    </ion-row>
+        <h2 class="text-center" style="text-align:center"> Add items</h2>
     <ion-row class="">
         <ion-col class="p-0">
           <ion-list>
@@ -36,7 +34,7 @@
            message is required
          </p>
        <ion-item class="pl-0 btn-sm">
-            <button ion-button class="btn submit-btn fs-16" full type="submit" (click)="onLogin(addForm)">Save</button>
+            <button ion-button class="btn submit-btn fs-16" full type="submit" (click)="addTransaction(addForm)">Save</button>
         </ion-item>
           </ion-list>
         </ion-col>

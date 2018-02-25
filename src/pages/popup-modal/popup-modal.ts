@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, IonicPage } from 'ionic-angular';
+import { ViewController, IonicPage,NavParams,Events } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -7,9 +7,15 @@ import { ViewController, IonicPage } from 'ionic-angular';
   templateUrl: 'popup-modal.html'
 })
 export class PopupModalPage {
+  modalData:any=null;
 
-
-  constructor(public viewCtrl: ViewController) {
+  constructor(public events: Events,public viewCtrl: ViewController, public navParams: NavParams) {
+    this.events.subscribe('group:next', (data,time) => {
+       this.dismiss();
+    });
+    if(this.navParams.get('modalData')){
+      this.modalData=this.navParams.get('modalData');
+    }
   }
 
   signup() {

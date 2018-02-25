@@ -1,0 +1,43 @@
+
+<ion-content style="padding-top:16px;">
+  
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 col-md-12 col-xl-12 >
+               <div class="welcome-tag"> Welcome to e-learning platform.</div>
+            </ion-col>
+          </ion-row>
+        <ion-row>
+            <ion-col col-12 col-md-12 col-xl-12 >
+              <div class="image-container text-center">
+               <ion-slides pager >
+                  <ion-slide>
+                      <img class= "banner-img" src="assets/img/courses/banner4.jpg"> 
+                  </ion-slide>
+                  <ion-slide>
+                      <img class= "banner-img" src="assets/img/courses/banner.jfif"> 
+                  </ion-slide>
+                  <ion-slide>
+                      <img class= "banner-img" src="assets/img/courses/banner1.jpg"> 
+                  </ion-slide>
+                  <ion-slide>
+                      <img class= "banner-img" src="assets/img/courses/banner2.jpg"> 
+                  </ion-slide>
+                  <ion-slide>
+                      <img class= "banner-img" src="assets/img/courses/banner3.jpg"> 
+                  </ion-slide>
+                  
+                </ion-slides>
+              </div>
+            </ion-col>
+          </ion-row>
+          
+      <ion-row>
+        <ion-col col-4 col-md-4 col-xl-3 *ngFor="let course of ['angularjs.jpg','bca.jpg','b-pharma.jpg','Btech.jpeg','MBA.jpg','mca.jpg','mtech.png','nodejs.jpg','reactjs.png','angularjs.jpg','bca.jpg','b-pharma.jpg','Btech.jpeg','MBA.jpg','mca.jpg']">
+          <div class="image-container text-center">
+          <img class="course-img" src="assets/img/courses/{{course}}"> 
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

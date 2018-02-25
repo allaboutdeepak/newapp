@@ -1,18 +1,36 @@
-<ion-header no-shadow no-border>
-    <ion-navbar >
-      <button ion-button menuToggle color="yellow">
+
+  <ion-header>
+
+    <ion-navbar>
+      <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>{{ pageTitle }}</ion-title>
+  
+      <ion-title center>
+       Home
+      </ion-title>
+  
+      <ion-buttons end>
+       <button ion-button icon-only>
+          <ion-icon name="contact"></ion-icon>
+        </button>
+         <button ion-button icon-only>
+          <ion-icon name="notifications"></ion-icon>
+        </button>
+        <button ion-button icon-only>
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-buttons>
     </ion-navbar>
+  
   </ion-header>
+
   <ion-content no-bounce>
-    <super-tabs id="mainTabs" [config]="{ sideMenu: 'left' }" scrollTabs toolbarColor="dark"  indicatorColor="yellow" badgeColor="yellow" (tabSelect)="onTabSelect($event)">
-      <super-tab [swipeBackEnabled]="false" [root]="page1" [title]="showTitles? 'Personal' : ''" [icon]="showIcons? 'home': ''" id="{{page1}}"></super-tab>
-      <super-tab [root]="page2" [title]="showTitles? 'Groups' : ''" [icon]="showIcons? 'trending-up' : ''" id="{{page2}}"></super-tab>
-      <!-- <super-tab [root]="page3" [title]="showTitles? 'Reports' : ''" [icon]="showIcons? 'heart' : ''" id="{{page3}}"></super-tab> -->
-      <super-tab [root]="page4" [title]="showTitles? 'Invite' : ''" [icon]="showIcons? 'heart' : ''" id="{{page4}}"></super-tab>
-     <!-- more tabs for testing color="dark" toolbarBackground="dark"-->
-       </super-tabs>
+     <ion-tabs>
+      <ion-tab tabTitle="Courses" root="CoursesPage" tabIcon="book"></ion-tab>
+      <ion-tab tabTitle="Expenses" root="ExpensesPage" tabIcon="logo-usd"></ion-tab>
+      <ion-tab tabTitle="buy & sale" root="ExpensesPage" tabIcon="cart"></ion-tab>
+    </ion-tabs>
+    
   </ion-content>
   

@@ -30,7 +30,7 @@ export class GroupbuddiesPage {
 
   addbuddy(buddy) {
     this.newbuddy = buddy;
-    this.groupservice.addmember(buddy);
+    //this.groupservice.addmember(buddy);
   }
 
 }

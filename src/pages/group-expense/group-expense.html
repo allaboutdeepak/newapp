@@ -1,0 +1,44 @@
+<ion-content>
+    <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="shouldShowCancel"
+    (ionInput)="onInput($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+  <!-- Segment in content -->
+<ion-segment [(ngModel)]="relationship" color="primary" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="New Group">
+      New Group
+    </ion-segment-button>
+    <ion-segment-button value="Invite friend">
+      Invite Friend
+    </ion-segment-button>
+  </ion-segment>
+  <ion-list>
+    <ion-item (click)="gotoGrouptransactionPage(item.name);" *ngFor="let item of allmygroups.groupData" >
+      <ion-avatar item-start>
+        <img src="{{item.image}}">
+      </ion-avatar>
+      <h2>{{item.name}}</h2>
+       <!-- <p>Lorem ipsum dolor sit amet..</p> -->
+      <!-- <ion-note item-end>11:11 pm</ion-note> -->
+    </ion-item>
+  </ion-list>
+
+  <ion-grid *ngIf="!allmygroups.groupData">
+      <ion-row>
+          <ion-col col-12 col-md-12 col-xl-12 >
+             <div style="text-align:center">
+              <ion-icon style="font-size:70px;color: rgb(222, 222, 222);" name="search"></ion-icon>
+              <h4 style="color: #424242;"> No Results found.</h4>
+              <p style="text-align:center ;color: #999;">Looks like you haven't added a group.<br>Add some group here</p>
+             
+              <ion-label color="primary">Add new group</ion-label>
+              </div>
+          </ion-col>
+        </ion-row>
+  </ion-grid>
+
+
+  <!-- <popup-menu> </popup-menu> -->
+</ion-content>

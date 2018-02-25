@@ -1,0 +1,18 @@
+<ion-searchbar
+[(ngModel)]="myInput"
+[showCancelButton]="shouldShowCancel"
+(ionInput)="onInput($event)"
+(ionCancel)="onCancel($event)">
+</ion-searchbar>
+<ion-list *ngIf="uniqueArray!=null" >
+    <ion-item *ngFor="let phone of uniqueArray">
+     <ion-avatar item-start>
+          <p data-letters="MN"></p>
+        </ion-avatar>
+    <ion-label>{{phone.name}} <br> {{phone.phone}}</ion-label>
+    <button ion-button outline item-end (click)="inviteFriend()">
+        Invite
+      </button>
+  </ion-item>
+
+</ion-list>

@@ -1,0 +1,44 @@
+
+<ion-content>
+
+    <ion-grid *ngIf="!transData">
+        <ion-row>
+            <ion-col col-12 col-md-12 col-xl-12 >
+               <div style="text-align:center">
+                <ion-icon style="font-size:70px;color: rgb(222, 222, 222);" name="search"></ion-icon>
+                <h4 style="color: #424242;"> No Results found.</h4>
+                <p style="text-align:center ;color: #999;">Looks like you haven't added a transaction.<br>Add some transaction here</p>
+               
+                <ion-label color="primary" (click)="openAddItemModal()">Add new transaction</ion-label>
+                </div>
+            </ion-col>
+          </ion-row>
+    </ion-grid>
+    <ion-label color="primary" (click)="openAddItemModal()">Add new transaction</ion-label>
+    <ion-card  *ngFor="let item of transData; let msgIndex = index" >
+        <ion-item text-wrap>
+        <ion-avatar item-start>
+        <img src="assets/user.jpg">
+        </ion-avatar>
+        <!-- <h5>{{userDetails.name}}</h5> -->
+        <h6 item-end>$ {{item.amount}} </h6>
+        <p class="fs-9"> {{item.goods}} </p>
+        </ion-item>
+        <ion-row>
+        <ion-col> <span class="fs-9">{{item.date |date:'EEEE yyyy-MM-dd'}}</span> </ion-col>
+        <!-- <ion-col>
+        <ion-icon name="trash" item-right (click)="feedDelete(item.feed_id, msgIndex)"></ion-icon>
+         </ion-col> -->
+        </ion-row>
+        </ion-card>
+  
+   <!-- <popup-menu *ngIf="transData!=null"> </popup-menu> -->
+    <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite())" *ngIf="!noRecords">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  
+  </ion-content>
+  
+    
+  
+  

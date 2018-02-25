@@ -8,29 +8,40 @@ import { TransactionsProvider } from '../../providers/transactions';
 })
 export class AddTransactionComponent {
 
-  transaction = { goods: 'goods',amount: '0.00', date: '', comment: '',type:'personal' };
+  transaction = { goods: '',amount: '0.00', date: '', comment: '',type:'personal',user_id:'',token:'' };
 	submitted = false;
 
   constructor( public transactionservice: TransactionsProvider,
     public loadingCtrl: LoadingController) {
-    console.log('Hello AddTransactionComponent Component');
-    
+    if(localStorage.getItem('userData')){
+      var user=JSON.parse(localStorage.getItem('userData')).userData;
+      this.transaction.user_id=user.user_id;
+      this.transaction.token=user.token;
+      
+    }
   }
 
-  onLogin(form: NgForm) {
-    // this.submitted = true;
-    // if (form.valid) {
-    //   let loader = this.loadingCtrl.create({
-    //     content: 'Loading, please wait..'
-    //   });
-    //   loader.present();
-    //   this.transactionservice.addTransaction(this.transaction).then(() => {
-    //     loader.dismiss();
-    //     alert('New transaction created');
-    //   }).catch((err) => {
-    //     alert(JSON.stringify(err));
-    //   })
+  addTransaction(form: NgForm) {
+    this.submitted = true;
+    if (form.valid) {
+      let loader = this.loadingCtrl.create({
+        content: 'Loading, please wait..'
+      });
+      loader.present();
+      this.transactionservice.addTransaction(this.transaction,'addPersonalTransaction').then((respose) => {
+        loader.dismiss();
+        let res:any=respose;
+        if(res.transactionData){
+          alert('New transaction created');
+        }else{
+          alert(res.error.text)
+        }
+       
+      }).catch((err) => {
+        alert(JSON.stringify(err));
+      })
 
-    // }
+    }
   }
+  
 }

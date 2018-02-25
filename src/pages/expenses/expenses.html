@@ -1,0 +1,6 @@
+<ion-content>
+  <super-tabs id="mainTabs" [config]="{ sideMenu: 'left' }" scrollTabs toolbarColor="dark"  indicatorColor="yellow" badgeColor="yellow" (tabSelect)="onTabSelect($event)">
+    <super-tab [swipeBackEnabled]="false" [root]="PersonalExpensePage" [title]="showTitles? 'Personal' : ''" [icon]="showIcons? 'home': ''" id="{{PersonalExpensePage}}"></super-tab>
+    <super-tab [root]="GroupExpensePage" [title]="showTitles? 'Groups' : ''" [icon]="showIcons? 'trending-up' : ''" id="{{GroupExpensePage}}"></super-tab>
+   </super-tabs>
+</ion-content>

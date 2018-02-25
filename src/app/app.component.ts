@@ -4,14 +4,12 @@ import { Nav, Platform, MenuController, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Subject } from 'rxjs/Subject';
-//import { Storage } from '@ionic/storage';
-//import firebase from 'firebase';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any='SlideWalkthroughPage';
+  rootPage: any;
   activePage = new Subject();
   pages: Array<{ title: string, component: any, active: boolean, icon: string}>;
   state: any;
@@ -39,6 +37,23 @@ export class MyApp {
         page.active = page.title === selectedPage.title;
       });
     });
+    if(localStorage.getItem('walkthrough')){
+
+      if(localStorage.getItem('userData')){
+        var user=JSON.parse(localStorage.getItem('userData')).userData;
+        if(user.otp_verified=="0"){
+          this.nav.push('VerifyotpPage',{mobile: user.mobile,code:user.code});
+        }else{
+          this.rootPage='HomePage';
+        }
+      }else{
+         this.rootPage='SignupotpPage';
+      }
+
+    }else{
+      this.rootPage='SlideWalkthroughPage';
+    }
+
   }
 
   initializeApp() {
@@ -46,7 +61,7 @@ export class MyApp {
       this.global.set('theme', '');
       this.statusBar.styleDefault();
       this.splashscreen.hide();
-      this.menu.enable(false);
+      this.menu.enable(true);
     });
   }
 
